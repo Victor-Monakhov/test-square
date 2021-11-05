@@ -13,7 +13,7 @@ export class SquareComponent implements OnInit {
     'red',
     'green'
   ];
-  square: any;
+  usersSquares:HTMLElement[] = [];
   constructor(private renderer:Renderer2, private el: ElementRef) {
     for (let i = 0; i < 6; i++){
       this.squares.push(this.createSquare());
@@ -30,12 +30,23 @@ export class SquareComponent implements OnInit {
   }
   public createSquare(){
     const square  = document.createElement('div');
-     
-     square.style.backgroundColor = '#000';
+     square.style.backgroundColor = `${this.colors[Math.floor(Math.random() * 3)]}`;
      square.style.width = '60px';
      square.style.height = '60px';
      square.style.margin = '50px';
+     square.onclick = this.choice;
      return square;
   }
+
+  public choice(){
+    //this.usersSquares.push(square);
+  }
+
+  public onClick(){
+    this.usersSquares.forEach((square)=>{
+      console.log(square.style.color);
+    });
+  }
+  
 
 }
